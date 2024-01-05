@@ -1,0 +1,50 @@
+{
+  "name": "vue3-electron-app",
+  "main": "dist-electron/main.js",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "chcp 65001 && vite",
+    "build": "vite build && electron-builder",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.6.4",
+    "lodash-es": "^4.17.21",
+    "pinia": "^2.1.7",
+    "vue": "^3.2.39",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.2.0",
+    "cross-env": "^7.0.3",
+    "electron": "^28.1.1",
+    "electron-builder": "^24.9.1",
+    "less": "3.9.0",
+    "tree-kill": "^1.2.2",
+    "vite": "^2.8.0",
+    "vite-plugin-electron": "^0.15.5",
+    "vite-plugin-electron-renderer": "^0.14.5"
+  },
+  "build": {
+    "appId": "com.my-website.my-app",
+    "productName": "vue3-electron-app",
+    "copyright": "Copyright © 2024 fengying",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "release/"
+    }
+  }
+}
