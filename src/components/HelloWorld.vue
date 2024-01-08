@@ -2,15 +2,15 @@
   <h1>{{ msg }}</h1>
   <button type="button" @click="count++">count is: {{ count }}</button>
   <p>chrome{{versions.chrome}}，electron{{versions.electron}}，node{{versions.node}}</p>
-  <div>
+  <div class="item">
     <input type="text" v-model="inputVal">
     <button type="button" @click="clickSetTitle">设置标题</button>
   </div>
-  <div>
+  <div class="item">
     <button type="button" @click="clickOpenFile">选择文件</button>
     <span class="bold">{{filePath}}</span>
   </div>
-  <div>
+  <div class="item">
     当前主题<span>{{curTheme}}</span>
     <button type="button" @click="clickToggle">切换主题</button>
     <button type="button" @click="clickRest">重置主题</button>
@@ -49,6 +49,9 @@ const clickRest = async ()=> {
 <style scoped>
 a {
   color: #42b983;
+}
+.item {
+  margin: 15px auto;
 }
 .bold {
   font-weight: bold;
