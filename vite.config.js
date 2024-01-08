@@ -7,11 +7,9 @@ import renderer from 'vite-plugin-electron-renderer'
 export default defineConfig({
   plugins: [
     vue(),
-    electron([
-      {
-        entry:"electron/main.js"
-      }
-    ]),
+    electron({
+      entry: 'electron/main.js'
+    }),
     renderer()
   ],
   base: './'
