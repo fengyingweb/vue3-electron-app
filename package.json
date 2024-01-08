@@ -28,15 +28,29 @@
     "vite-plugin-electron-renderer": "^0.14.5"
   },
   "build": {
-    "appId": "com.my-website.my-app",
+    "appId": "com.my-website.vue3-electron-app",
+    "asar": true,
     "productName": "vue3-electron-app",
     "copyright": "Copyright © 2024 fengying",
     "mac": {
-      "category": "public.app-category.utilities"
+      "category": "public.app-category.utilities",
+      "artifactName": "${productName}_${version}.${ext}",
+      "target": ["dmg"]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "artifactName": "${productName}_${version}.${ext}"
     },
     "nsis": {
       "oneClick": false,
-      "allowToChangeInstallationDirectory": true
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false
     },
     "files": [
       "dist/**/*",
