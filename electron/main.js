@@ -1,6 +1,5 @@
 import { app, BrowserWindow, ipcMain, dialog, nativeTheme } from 'electron'
 import path from 'node:path'
-const url = process.env.VITE_DEV_SERVER_URL || 'http://localhost:3000/'
 const createWindow = ()=> {
   const mainWindow = new BrowserWindow({
     width: 900,
@@ -36,7 +35,8 @@ const createWindow = ()=> {
   ipcMain.handle('dark-mode:system', ()=> {
     nativeTheme.themeSource = 'system'
   })
-  
+  const url = process.env['VITE_DEV_SERVER_URL']
+  console.log(process.env['VITE_DEV_SERVER_URL'])
   if (process.env.NODE_ENV !== 'development') {
     mainWindow.loadFile(path.join(__dirname, '../dist/index.html'))
   } else {
