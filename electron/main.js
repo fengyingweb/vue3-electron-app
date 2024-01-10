@@ -1,12 +1,13 @@
-import { app, BrowserWindow, ipcMain, dialog, nativeTheme } from 'electron'
-import path from 'node:path'
+const { app, BrowserWindow, ipcMain, dialog, nativeTheme } = require('electron')
+const path = require('node:path')
+const { createLoadWindow } = require('./windows/loadWindows.js')
 const createWindow = ()=> {
   const mainWindow = new BrowserWindow({
-    width: 900,
+    width: 800,
     height: 600,
     icon: path.join(__dirname, '../src/assets/logo.png'),
     webPreferences: {
-      preload: path.join(__dirname, '../electron/preload.js')
+      preload: path.join(__dirname, '/preload/index.js')
     }
   })
 
@@ -36,12 +37,11 @@ const createWindow = ()=> {
     nativeTheme.themeSource = 'system'
   })
   const url = process.env['VITE_DEV_SERVER_URL']
-  console.log(process.env['VITE_DEV_SERVER_URL'])
   if (process.env.NODE_ENV !== 'development') {
     mainWindow.loadFile(path.join(__dirname, '../dist/index.html'))
   } else {
     if (url) {
-      mainWindow.loadURL(url)
+      mainWindow.loadURL(`${url}#/load`)
     } else {
       mainWindow.loadFile(path.join(__dirname, '../index.html'))
     }
@@ -58,7 +58,7 @@ const createWindow = ()=> {
 // 和创建浏览器窗口的时候调用
 // 部分 API 在 ready 事件触发后才能使用。
 app.whenReady().then(()=> {
-  createWindow()
+  createLoadWindow(BrowserWindow)
 
   app.on('activate', ()=> {
     // 在 macOS 系统内, 如果没有已开启的应用窗口
