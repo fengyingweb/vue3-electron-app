@@ -24,15 +24,24 @@ const { webCache } = useCache('localStorage')
 // 引入icon
 const logo = ref(imgLocalUrl('@/assets/logo.png'))
 const close = ref(imgLocalUrl('@/assets/load/close.png'))
-const progress = ref(29)
+const progress = ref(0)
+let timer = null
 onMounted(()=>{
-  if (window.electronAPI) {
-    if(!webCache.get('login')){
-      window.electronAPI.isShowLogin(true)
-    }else{
-      window.electronAPI.isShowLogin(false)
+  clearInterval(timer)
+  timer = setInterval(()=> {
+    if (progress.value === 100) {
+      clearInterval(timer)
+      if (window.electronAPI) {
+        if(!webCache.get('login')){
+          window.electronAPI.isShowLogin(true)
+        }else{
+          window.electronAPI.isShowLogin(false)
+        }
+      }
+      return
     }
-  }
+    progress.value += 1
+  }, 100)
 })
 </script>
 
