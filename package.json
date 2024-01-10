@@ -1,11 +1,12 @@
 {
   "name": "vue3-electron-app",
-  "main": "dist-electron/main.js",
+  "main": "electron/main.js",
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "start": "npm run dev",
+    "start": "concurrently \"npm run dev\" \"npm run serve\"",
     "dev": "chcp 65001 && vite",
+    "serve": "nodemon --exec electron . --watch ./ --ext .js,.html,.scss,.vue,.ts,.css,.less",
     "build": "vite build && electron-builder",
     "preview": "vite preview"
   },
@@ -16,6 +17,7 @@
     "electron-window-state": "^5.0.3",
     "element-plus": "^2.4.4",
     "lodash-es": "^4.17.21",
+    "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "vue": "^3.2.39",
     "vue-router": "^4.2.5",
@@ -23,10 +25,12 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.0",
+    "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "electron": "^28.1.1",
     "electron-builder": "^24.9.1",
     "less": "3.9.0",
+    "nodemon": "^3.0.2",
     "tree-kill": "^1.2.2",
     "unplugin-auto-import": "^0.17.3",
     "unplugin-vue-components": "^0.26.0",
@@ -65,7 +69,7 @@
     },
     "files": [
       "dist/**/*",
-      "dist-electron/**/*"
+      "electron/**/*"
     ],
     "directories": {
       "buildResources": "assets",
