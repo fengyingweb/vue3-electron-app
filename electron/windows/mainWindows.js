@@ -5,7 +5,7 @@ const isDev = require('electron-is-dev')
 const windowStateKeeper = require('electron-window-state')
 const mainWinURL = isDev ? `http://localhost:3002/#/` : `${LOAD_URL}#`;
 
-const createMainWindow=(BrowserWindow)=>{
+const createMainWindow=(BrowserWindow, nativeTheme)=>{
     // 默认窗口尺寸
     let mainWindowState = windowStateKeeper({
         defaultWidth: 1000,
@@ -35,6 +35,7 @@ const createMainWindow=(BrowserWindow)=>{
     // 优雅打开界面
     win.on('ready-to-show',()=>{
         win.show()
+        win.webContents.send('on-get-theme', nativeTheme.shouldUseDarkColors)
     })
     global.mainWindow = win
 }
