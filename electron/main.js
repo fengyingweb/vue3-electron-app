@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain, dialog, nativeTheme } = require('electron')
 const path = require('node:path')
 const { initController } =require('./controller/index.js')
 const { initTray } = require('./tray/index.js')
+const { initShortCut, unInstallShortCut } = require('./shortcut/index.js')
 const  { createMainWindow }=require( './windows/mainWindows.js')
 const { createLoadWindow } = require('./windows/loadWindows.js')
 const { createLoginWindow } = require( './windows/loginWindows.js')
@@ -67,6 +68,8 @@ app.whenReady().then(()=> {
   initController(BrowserWindow)
   // 初始化托盘
   initTray(app)
+  // 初始化快捷键
+  initShortCut()
 
   // createMainWindow(BrowserWindow)
   createLoadWindow(BrowserWindow)
@@ -83,4 +86,21 @@ app.whenReady().then(()=> {
 // 直到用户使用 Cmd + Q 明确退出
 app.on('window-all-closed', ()=> {
   if (process.platform !== 'darwin') app.quit()
+})
+
+// 客户端聚焦
+app.on('browser-window-focus',()=>{
+  // 初始化快捷键
+  initShortCut()
+  console.log('browser-window-focus')
+})
+// 客户端失去焦点
+app.on('browser-window-blur',()=>{
+  // 注销快捷键
+  unInstallShortCut()
+  console.log('browser-window-blur')
+})
+app.on('will-quit', () => {
+  // 注销快捷键
+  unInstallShortCut()
 })
