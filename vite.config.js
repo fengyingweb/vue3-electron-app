@@ -15,12 +15,23 @@ export default defineConfig({
     // }),
     // renderer(),
     AutoImport({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver({
+        importStyle:'sass'
+      })],
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver({
+        importStyle:'sass'
+      })],
     }),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+          additionalData: `@use "@/assets/css/layout.scss" as *;`,
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src') // 设置 `@` 指向 `src` 目录
