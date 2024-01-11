@@ -127,7 +127,7 @@ const handleToLogin= async ()=>{
     }
     const res = await loginStore.goLogin(params)
     if (res.code === 0) {
-      webCache.set('login',true,{exp : 100})
+      webCache.set('login',true,{exp : 600})
       window.electronAPI.setLogin('登陆成功')
     }
   } catch (error) {
