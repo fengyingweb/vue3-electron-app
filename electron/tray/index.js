@@ -1,7 +1,7 @@
-const { app, Menu, Tray, nativeImage } = require('electron')
+const { Menu, Tray, nativeImage } = require('electron')
 const path = require('node:path')
 let appIcon = null
-const initTray = ()=>{
+const initTray = (app) => {
     const iconPath = path.join(__dirname, '/icone.ico').replace('/\\/g','\\\\');
     appIcon = new Tray(nativeImage.createFromPath(iconPath))
     appIcon.setToolTip('This is my application.')
