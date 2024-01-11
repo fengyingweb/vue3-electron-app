@@ -1,11 +1,10 @@
-// @ts-ignore
-const {ipcMain, BrowserWindow, dialog, shell} = require('electron')
+const {ipcMain, dialog, shell} = require('electron')
 const  {createMainWindow} = require( '../windows/mainWindows')
 const {createLoginWindow} = require('../windows/loginWindows')
 const {createRegisterWindow} = require('../windows/registerWindows')
 const {createResetPasswordWindow} = require('../windows/resetPasswordWindows')
 
-const settitle = ()=>{
+const settitle = (BrowserWindow)=>{
   ipcMain.on('set-title', (ev, title)=> {
     const webContents = ev.sender
     const win = BrowserWindow.fromWebContents(webContents)
@@ -45,7 +44,7 @@ const openFile = ()=> {
   })
 }
 // 登录 展示首页
-const setlogin = ()=>{
+const setlogin = (BrowserWindow)=>{
     ipcMain.handle('on-setlogin-event',(event, value)=>{
         const webContents = event.sender
         const win = BrowserWindow.fromWebContents(webContents)
@@ -55,7 +54,7 @@ const setlogin = ()=>{
     })
 }
 // 加载页判断登录或者展示首页
-const isShowLogin=()=>{
+const isShowLogin=(BrowserWindow)=>{
     ipcMain.handle('on-isshowlogin-event',(event, value)=>{
       const webContents = event.sender
       const win = BrowserWindow.fromWebContents(webContents)
@@ -69,7 +68,7 @@ const isShowLogin=()=>{
     })
 }
 // 首页屏幕缩小 放大 关闭控制
-const setScreen = ()=>{
+const setScreen = (BrowserWindow)=>{
     ipcMain.handle('on-setScreen-event',(event, value)=>{
         const webContents = event.sender
         const win = BrowserWindow.fromWebContents(webContents)
@@ -89,7 +88,7 @@ const setScreen = ()=>{
     })
 }
 // 打开注册页面
-const openRegister = ()=>{
+const openRegister = (BrowserWindow)=>{
     ipcMain.handle('on-openRegister-event',(event)=>{
         const webContents = event.sender
         const win = BrowserWindow.fromWebContents(webContents)
@@ -99,7 +98,7 @@ const openRegister = ()=>{
     })
 }
 // 注册成功
-const setRegister = ()=>{
+const setRegister = (BrowserWindow)=>{
     ipcMain.handle('on-register-event',(event)=>{
         const webContents = event.sender
         const win = BrowserWindow.fromWebContents(webContents)
@@ -109,7 +108,7 @@ const setRegister = ()=>{
     })
 }
 // 重置密码后返回登录页面
-const setBackLogin = ()=>{
+const setBackLogin = (BrowserWindow)=>{
     ipcMain.handle('on-backLogin-event',(event)=>{
         const webContents = event.sender
         const win = BrowserWindow.fromWebContents(webContents)
@@ -119,7 +118,7 @@ const setBackLogin = ()=>{
     })
 }
 // 打开重置密码
-const openRestPassword = ()=>{
+const openRestPassword = (BrowserWindow)=>{
     ipcMain.handle('on-openRestPassword-event',(event)=>{
         const webContents = event.sender
         const win = BrowserWindow.fromWebContents(webContents)
@@ -128,19 +127,19 @@ const openRestPassword = ()=>{
         return '重置密码后返回登录页面'
     })
 }
-const initController = (app) => {
-    openRestPassword()
-    setBackLogin()
-    openRegister()
-    setRegister()
-    settitle()
-    openByBrowser()
-    setlogin()
-    isShowLogin()
-    setScreen()
+const initController = (BrowserWindow) => {
+    openRestPassword(BrowserWindow)
+    setBackLogin(BrowserWindow)
+    openRegister(BrowserWindow)
+    setRegister(BrowserWindow)
+    settitle(BrowserWindow)
+    setlogin(BrowserWindow)
+    isShowLogin(BrowserWindow)
+    setScreen(BrowserWindow)
     toggleTheme()
     systemTheme()
     openFile()
+    openByBrowser()
 }
 
 module.exports={
