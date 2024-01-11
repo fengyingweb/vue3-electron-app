@@ -159,7 +159,7 @@ const handleBackLogin=()=>{
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .reset-container{
   width: 490px;
   height: 492px;
