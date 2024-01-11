@@ -3,7 +3,7 @@
    <div class="action-box_left wraper-container-no-drag">
      <img :src="isDark?homeDark:home"/>
      <img :src="isDark?shuaxinDark:shuaxin"/>
-     <p class="time">2022/11/1 16:45:32</p>
+     <p class="time">{{currentTime}}</p>
    </div>
    <div class="action-box_right wraper-container-no-drag">
      <img :src="isDark?topUtilsDark:topUtils"  class="action-img"/>
@@ -21,12 +21,15 @@
 </template>
 
 <script setup>
-import {computed, ref } from 'vue'
+import {computed, ref, onBeforeUnmount } from 'vue'
 import {imgLocalUrl} from '@/utils/imgLocalUrl'
 import {useAppStore} from '@/store/app'
+import moment from 'moment'
 
 const appStore = useAppStore()
 
+let timer = null
+const currentTime = ref(moment().format('YYYY-MM-DD HH:mm:ss'))
 const isDark = computed(()=>{
   return appStore.isDarkMode
 })
@@ -58,6 +61,13 @@ const handleChangeTheme=()=>{
   appStore.setDark()
 }
 
+timer = setInterval(()=> {
+  currentTime.value = moment().format('YYYY-MM-DD HH:mm:ss')
+}, 1000)
+
+onBeforeUnmount(()=> {
+  clearInterval(timer)
+})
 </script>
 
 <style lang="scss" scoped>
