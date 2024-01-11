@@ -140,7 +140,7 @@ const handleOpenReset=()=>{
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .login-password-container{
   :deep(.el-form-item__error) {
     color: #FFFFFF;
