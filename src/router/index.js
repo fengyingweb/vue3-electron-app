@@ -1,7 +1,9 @@
 import {createRouter, createWebHashHistory} from 'vue-router';
 import {imgLocalUrl} from '@/utils/imgLocalUrl'
 
-const routes = [
+const LayOut = ()=> import('@/layout/index.vue')
+
+export const routes = [
   {
     path: '/load',
     name: 'Load',
@@ -25,6 +27,22 @@ const routes = [
       name: 'ResetPassword',
       hidden: true,
       component: () => import('@/views/login/resetPassword/index.vue'),
+  },
+  {
+    path: '/',
+    name: 'Review',
+    component: LayOut,
+    children:[
+        {
+            path: '/',
+            name: 'ReviewIndex',
+            meta: {
+                title: '审阅区',
+                icon: imgLocalUrl('@/assets/layout/review.png'),
+            },
+            component: () => import('@/views/review/index.vue')
+        }
+    ]
   },
 ]
 
