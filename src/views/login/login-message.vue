@@ -120,7 +120,7 @@ const handleToLogin=()=>{
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .login-message-container{
   :deep(.el-form-item__error) {
     color: #FFFFFF;
