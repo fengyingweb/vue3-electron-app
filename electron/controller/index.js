@@ -1,4 +1,4 @@
-const {ipcMain, dialog, shell} = require('electron')
+const {ipcMain, dialog, shell, nativeTheme} = require('electron')
 const  {createMainWindow} = require( '../windows/mainWindows')
 const {createLoginWindow} = require('../windows/loginWindows')
 const {createRegisterWindow} = require('../windows/registerWindows')
@@ -34,6 +34,7 @@ const systemTheme = ()=> {
     nativeTheme.themeSource = 'system'
   })
 }
+
 // 打开文件
 const openFile = ()=> {
   ipcMain.handle('dialog:openFile', async ()=> {
@@ -46,10 +47,11 @@ const openFile = ()=> {
 // 登录 展示首页
 const setlogin = (BrowserWindow)=>{
     ipcMain.handle('on-setlogin-event',(event, value)=>{
+        console.log(value)
         const webContents = event.sender
         const win = BrowserWindow.fromWebContents(webContents)
         win.close()
-        createMainWindow(BrowserWindow)
+        createMainWindow(BrowserWindow, nativeTheme)
         return value
     })
 }
@@ -62,7 +64,7 @@ const isShowLogin=(BrowserWindow)=>{
       if(value){
         createLoginWindow(BrowserWindow)
       }else{
-        createMainWindow(BrowserWindow)
+        createMainWindow(BrowserWindow, nativeTheme)
       }
         return '加载完成'
     })
@@ -72,7 +74,6 @@ const setScreen = (BrowserWindow)=>{
     ipcMain.handle('on-setScreen-event',(event, value)=>{
         const webContents = event.sender
         const win = BrowserWindow.fromWebContents(webContents)
-        console.log(win)
         if(value === 'miniScreen'){
             win.minimize()
         }else if(value === 'fullScreen'){
