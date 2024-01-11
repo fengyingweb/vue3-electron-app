@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain, dialog, nativeTheme } = require('electron')
 const path = require('node:path')
 const { initController } =require('./controller/index.js')
-const { initTray }=require('./tray/index.js')
+const { initTray } = require('./tray/index.js')
 const  { createMainWindow }=require( './windows/mainWindows.js')
 const { createLoadWindow } = require('./windows/loadWindows.js')
 const { createLoginWindow } = require( './windows/loginWindows.js')
@@ -64,9 +64,9 @@ const { createLoginWindow } = require( './windows/loginWindows.js')
 // 部分 API 在 ready 事件触发后才能使用。
 app.whenReady().then(()=> {
   // 初始化监听事件
-  initController(app)
+  initController(BrowserWindow)
   // 初始化托盘
-  initTray()
+  initTray(app)
 
   // createMainWindow(BrowserWindow)
   createLoadWindow(BrowserWindow)
