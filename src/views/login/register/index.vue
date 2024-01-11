@@ -12,7 +12,7 @@
           新用户注册申请
         </span>
       </div>
-      <img :src="closeIcon" class="close-icon wraper-container-no-drag"  @click="handleBackLogin()"/>
+      <img :src="closeIcon" class="close-icon wraper-container-no-drag"  @click="handleBackLogin"/>
     </div>
      <div class="register-main wraper-container-no-drag">
        <el-form
@@ -61,7 +61,7 @@
            </div>
          </el-form-item>
        </el-form>
-       <p class="back-login" @click="handleBackLogin()">
+       <p class="back-login" @click="handleBackLogin">
          返回登录界面
        </p>
        <div class="submit-btn" @click="submitForm(ruleFormRef)">
@@ -92,7 +92,7 @@
             </div>
             <p>已完成注册申请! </p>
             <p>后续请关注注册手机短信，通知审核结果</p>
-           <div class="btn">
+           <div class="btn" @click="handleBackLogin">
              返回登录界面
            </div>
          </div>
