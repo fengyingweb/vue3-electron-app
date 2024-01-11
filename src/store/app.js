@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
-import { useCache } from '@/hooks/useChache.js'
+import { useCache } from '@/hooks/useCache.js'
 
 const { webCache } = useCache('localStorage')
 
-export default useAppStore = defineStore('app', {
+export const useAppStore = defineStore('app', {
   state: ()=> {
     return {
       isCollapse: false,
