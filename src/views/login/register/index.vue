@@ -227,7 +227,7 @@ const handleBackLogin=()=>{
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 :deep(.el-dialog__header){
   padding: 0;
   margin-right: 0;
