@@ -58,7 +58,7 @@ const handleChangeScreen=(value)=>{
     window.electronAPI.setScreen(value)
 }
 const handleChangeTheme= async ()=>{
-  const res = await window.electronAPI.toggleTheme()
+  const res = await window.electronAPI?.toggleTheme()
   appStore.setDark(res)
 }
 
