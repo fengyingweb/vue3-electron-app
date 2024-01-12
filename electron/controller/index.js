@@ -34,6 +34,12 @@ const systemTheme = ()=> {
     nativeTheme.themeSource = 'system'
   })
 }
+// 设置主题
+const setTheme = ()=>{
+  ipcMain.on('on-set-theme', (ev, theme)=> {
+    nativeTheme.themeSource = theme
+  })
+}
 
 // 打开文件
 const openFile = ()=> {
@@ -51,7 +57,7 @@ const setlogin = (BrowserWindow)=>{
         const webContents = event.sender
         const win = BrowserWindow.fromWebContents(webContents)
         win.close()
-        createMainWindow(BrowserWindow, nativeTheme)
+        createMainWindow(BrowserWindow)
         return value
     })
 }
@@ -64,7 +70,7 @@ const isShowLogin=(BrowserWindow)=>{
       if(value){
         createLoginWindow(BrowserWindow)
       }else{
-        createMainWindow(BrowserWindow, nativeTheme)
+        createMainWindow(BrowserWindow)
       }
         return '加载完成'
     })
@@ -139,6 +145,7 @@ const initController = (BrowserWindow) => {
     setScreen(BrowserWindow)
     toggleTheme()
     systemTheme()
+    setTheme()
     openFile()
     openByBrowser()
 }
