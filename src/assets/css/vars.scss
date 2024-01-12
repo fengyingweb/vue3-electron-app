@@ -52,6 +52,10 @@ $rem: 75rem;
   --breadcrumb-active-text-color:#3E3A39;// 面包屑激活字体色
   --menu-text-color:#FFFFFF; // 菜单栏文字颜色
   --top-header-time-color:#303741; // 顶部时间颜色
+  --layout-content-bg-color: #F5F6F7; // 内容背景色
+  --app-main-container-bg-color: #F5F6F7; // 内容背景色
+  --layout-content-text-color: #333; // 内容字体色
+  --app-main-container-text-color: #333; // 内容字体色
 }
 .dark{
   --menu-bg-color: #1B1E25;
@@ -63,5 +67,9 @@ $rem: 75rem;
   --breadcrumb-active-text-color:#FFFFFF;
   --menu-text-color:#C7CED2 ;
   --top-header-time-color:#BCBCBC;
+  --layout-content-bg-color: #282828; // 内容背景色
+  --app-main-container-bg-color: #282828; // 内容背景色
+  --layout-content-text-color: #fff; // 内容字体色
+  --app-main-container-text-color: #fff; // 内容字体色
 }
 
