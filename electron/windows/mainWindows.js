@@ -3,7 +3,7 @@ const path = require('node:path')
 const isDev = require('electron-is-dev')
 //客户端尺寸位置记忆插件
 const windowStateKeeper = require('electron-window-state')
-const mainWinURL = isDev ? `http://localhost:3002/#/` : `${LOAD_URL}#`;
+const mainWinURL = isDev ? `http://localhost:3002/#/` : `${LOAD_URL}#/`;
 
 const createMainWindow=(BrowserWindow)=>{
     // 默认窗口尺寸
