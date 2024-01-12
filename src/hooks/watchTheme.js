@@ -6,15 +6,14 @@ export const watchTheme = () =>{
         return appStore.isDarkMode
     })
     watchEffect(()=>{
-            if(isDarkMode.value){
-                console.log('223')
-                document.body.className = 'dark';
-                // document.documentElement.style.setProperty('--dark-bg-color','red')
-              }else{
-                console.log('323213')
-                document.body.className = '';
-                // document.documentElement.style.setProperty('--dark-bg-color','red')
-              }
-            console.log(isDarkMode.value)
+        if(isDarkMode.value){
+            console.log('223')
+            document.body.classList.add('dark')
+        }else{
+            console.log('323213')
+            document.body.classList.remove('dark')
+        }
+        console.log(isDarkMode.value)
     })
+    window.electronAPI.setTheme(isDarkMode.value ? 'dark' : 'light')
 }
