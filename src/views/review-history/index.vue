@@ -7,7 +7,7 @@
 <script setup>
 import { ref } from 'vue'
 import {useCache} from '@/hooks/useCache'
-const {wsCache}=useCache('localStorage')
+const {webCache}=useCache('localStorage')
 
 const title = ref('审阅区历史')
 
@@ -15,5 +15,7 @@ const title = ref('审阅区历史')
 </script>
 
 <style lang="scss" scoped>
-
+.wraper-container {
+     padding: 14px;
+}
 </style>
