@@ -2,7 +2,7 @@
    <div class="wraper-container">
     <div>
        <span>{{title}}</span>
-       <el-button class="btn-item" type="danger" @click="goToNews">查看新闻</el-button>
+       <el-button class="btn-item" type="primary" @click="goToNews">查看新闻</el-button>
     </div>
    </div>
 </template>
