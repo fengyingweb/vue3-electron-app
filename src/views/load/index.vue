@@ -41,7 +41,7 @@ onMounted(()=>{
       return
     }
     progress.value += 1
-  }, 100)
+  }, 50)
 })
 </script>
 
