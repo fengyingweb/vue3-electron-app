@@ -14,7 +14,7 @@ export const useAppStore = defineStore('app', {
   actions: {
     // 设置主题切换
     setDark(isDark){
-      this.isDarkMode = isDark
+      this.isDarkMode = isDark ?? !this.isDarkMode
       webCache.set('isDarkMode', this.isDarkMode)
     },
     // 设置菜单合并
