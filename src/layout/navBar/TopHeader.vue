@@ -6,7 +6,7 @@
      <p class="time">{{currentTime}}</p>
    </div>
    <div class="action-box_right wraper-container-no-drag">
-     <img :src="isDark?topUtilsDark:topUtils"  class="action-img"/>
+     <!-- <img :src="isDark?topUtilsDark:topUtils"  class="action-img"/> -->
      <img :src="isDark?topVoiceDark:topVoice"  class="action-img"/>
      <img :src="isDark?topInfoDark:topInfo"  class="action-img"/>
      <img :src="isDark?topThemeDark:topTheme"  class="action-img" @click="handleChangeTheme"/>
@@ -51,14 +51,15 @@ const topExpandDark=imgLocalUrl('@/assets/layout/top-expand-dark.png')
 const topMiniDark=imgLocalUrl('@/assets/layout/top-mini-dark.png')
 const topVoiceDark=imgLocalUrl('@/assets/layout/top-voice-dark.png')
 const topThemeDark=imgLocalUrl('@/assets/layout/top-theme-dark.png')
-const topUtilsDark=imgLocalUrl('@/assets/layout/top-utils-dark.png')
+// const topUtilsDark=imgLocalUrl('@/assets/layout/top-utils-dark.png')
 const topInfoDark=imgLocalUrl('@/assets/layout/top-info-dark.png')
 
 const handleChangeScreen=(value)=>{
     window.electronAPI.setScreen(value)
 }
-const handleChangeTheme=()=>{
-  appStore.setDark()
+const handleChangeTheme= async ()=>{
+  const res = await window.electronAPI.toggleTheme()
+  appStore.setDark(res)
 }
 
 timer = setInterval(()=> {
