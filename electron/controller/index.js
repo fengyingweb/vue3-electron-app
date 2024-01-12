@@ -14,7 +14,8 @@ const settitle = (BrowserWindow)=>{
 // 浏览器打开页面
 const openByBrowser = ()=>{
     ipcMain.handle('on-useOpenByBrowser-event',(event, url)=>{
-       return shell.openExternal(url)
+       shell.openExternal(url)
+       return '跳转成功'
     })
 }
 // 切换主题
