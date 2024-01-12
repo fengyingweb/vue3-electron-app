@@ -41,7 +41,8 @@ watchTheme()
   }
   .layout-content{
     //min-height: calc(100vh);
-    background: #ffffff;
+    background: var(--layout-content-bg-color);
+    color: var(--layout-content-text-color);
   }
 }
 </style>
