@@ -15,5 +15,5 @@ export const watchTheme = () =>{
         }
         console.log(isDarkMode.value)
     })
-    window.electronAPI.setTheme(isDarkMode.value ? 'dark' : 'light')
+    window.electronAPI?.setTheme(isDarkMode.value ? 'dark' : 'light')
 }
