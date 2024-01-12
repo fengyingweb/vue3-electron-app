@@ -2,8 +2,8 @@
     <div class="tip-container">
         <i-ep-Expand v-if="isCollapse" class="mini-icon" @click="handleSetCollapse(false)"></i-ep-Expand>
         <i-ep-Fold v-else class="mini-icon" @click="handleSetCollapse(true)"></i-ep-Fold>
-        <img :src="qq" class="qq-img" v-if="!isCollapse"/>
-        <span v-if="!isCollapse">987768887</span>
+        <div class="wechat-icon" v-if="!isCollapse"></div>
+        <span v-if="!isCollapse">13012345678</span>
     </div>
 </template>
 
@@ -11,7 +11,6 @@
 import {imgLocalUrl} from '@/utils/imgLocalUrl'
 import {useAppStore} from "@/store/app";
 import {computed} from "vue";
-const qq=imgLocalUrl('@/assets/layout/qq.png')
 const appStore = useAppStore()
 const isCollapse = computed(()=>{
   return appStore.isCollapse
@@ -28,12 +27,17 @@ const handleSetCollapse=(e)=>{
   bottom: 27px;
   display: flex;
   align-items: center;
-  .qq-img{
-    width: 16px;
-    height: 16px;
-    display: block;
+  .wechat-icon {
     margin-left: 11px;
     margin-right: 6px;
+    width: 30px;
+    height: 30px;
+    background-image: url('@/assets/layout/wechat-bg.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #fff;
+    border-radius: 30px;
+    overflow: hidden;
   }
   span{
     font-size: 14px;
