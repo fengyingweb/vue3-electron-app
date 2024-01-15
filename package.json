@@ -64,13 +64,22 @@
           ]
         }
       ],
+      "icon": "./public/icon.ico",
       "artifactName": "${productName}_${version}.${ext}"
     },
     "nsis": {
       "oneClick": false,
       "perMachine": false,
       "allowToChangeInstallationDirectory": true,
-      "deleteAppDataOnUninstall": false
+      "deleteAppDataOnUninstall": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "allowElevation": true,
+      "runAfterFinish": true,
+      "installerIcon": "./public/icon.ico",
+      "uninstallerIcon": "./public/icon.ico",
+      "installerHeaderIcon": "./public/icon.ico",
+      "shortcutName": "vue3-electron-app"
     },
     "files": [
       "dist/**/*",
